@@ -8,6 +8,7 @@ using Firebase.Auth;
 using Firebase.Database;
 using Google;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
 
 public class GoogleSignInDemo : MonoBehaviour
@@ -19,40 +20,46 @@ public class GoogleSignInDemo : MonoBehaviour
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
-    FirebaseUser user;
+    private FirebaseUser logonUser;
     private GoogleSignInConfiguration configuration;
+
+    List<LevelSimple> levels = new List<LevelSimple>();
 
     private void Awake()
     {
-
+        Debug.Log($"user id is: {AnalyticsSessionInfo.userId}");
     }
 
     public void Start()
     {
-        configuration = new GoogleSignInConfiguration { WebClientId = "542556702867-4fos9a8s2snpf1a1mihuv3ej9dt9stod.apps.googleusercontent.com", RequestEmail = true, RequestIdToken = true };
+        configuration = new GoogleSignInConfiguration { 
+            WebClientId = "542556702867-4fos9a8s2snpf1a1mihuv3ej9dt9stod.apps.googleusercontent.com", 
+            RequestEmail = true, 
+            RequestIdToken = true 
+        };
         CheckFirebaseDependencies();
     }
 
     void AuthStateChanged(object sender, System.EventArgs eventArgs)
     {
         Debug.Log("[MORIS] AuthStateChanged call");
-        if (auth.CurrentUser != user)
+        if (auth.CurrentUser != logonUser)
         {
             Debug.Log($"auth.CurrentUser is null? -> {auth.CurrentUser == null}");
-            Debug.Log($"user is null? -> {user == null}");
+            Debug.Log($"user is null? -> {logonUser == null}");
 
-            bool signedIn = user != auth.CurrentUser && auth.CurrentUser != null;
+            bool signedIn = logonUser != auth.CurrentUser && auth.CurrentUser != null;
 
-            if (!signedIn && user != null)
+            if (!signedIn && logonUser != null)
             {
-                Debug.Log($"Signed out {user.UserId}");
+                Debug.Log($"Signed out {logonUser.UserId}");
             }
 
-            user = auth.CurrentUser;
+            logonUser = auth.CurrentUser;
 
             if (signedIn)
             {
-                Debug.Log($"Signed in {user.UserId}");
+                Debug.Log($"Signed in {logonUser.UserId}");
             }
         }
     }
@@ -108,12 +115,43 @@ public class GoogleSignInDemo : MonoBehaviour
 
         string userId = Guid.NewGuid().ToString();
 
-        LevelSimple user = new LevelSimple(level, points);
+        LevelSimple levelSimple = new LevelSimple(level, points);
 
-        string json = JsonUtility.ToJson(user);
+        /*if(logonUser != null && logonUser.UserId != null)
+        {
+            userId = logonUser.UserId;
+        }*/
 
-        databaseReference.Child("levels").Child(userId).SetRawJsonValueAsync(json);
+        var list = new LevelSimpleList();
 
+        levels.Add(levelSimple);
+        levels.Add(levelSimple);
+        levels.Add(levelSimple);
+        levels.Add(levelSimple);
+
+        list.levels = levels;
+
+        string json = JsonUtility.ToJson(list);
+
+        Debug.Log($"the json generate: {json}");
+
+        string key = databaseReference.Child("levels").Child(userId).Child("test").Push().Key;
+
+        Debug.Log($"the key generate: {key}");
+
+        List<string> test = levels.Select(x => x.level).ToList();
+
+        try
+        {
+            databaseReference.Child("levels").Child(userId).SetRawJsonValueAsync(json);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"exception while saving {ex.Message}");
+        }
+
+
+        Debug.Log("WriteNewLevel finished");
         AddToInformation("WriteNewLevel finished");
     }
 
