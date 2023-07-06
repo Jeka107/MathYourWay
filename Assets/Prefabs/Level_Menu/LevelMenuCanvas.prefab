@@ -531,9 +531,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 819878913}
   - {fileID: 819666869712669745}
   - {fileID: 819666868529638091}
+  - {fileID: 819878913}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -559,7 +559,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -616,6 +618,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startLevelLabel: {fileID: 819666869712669742}
+  settingsLabel: {fileID: 0}
+  blurImage: {fileID: 0}
 --- !u!1 &819666869170279050
 GameObject:
   m_ObjectHideFlags: 0

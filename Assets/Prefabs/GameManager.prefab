@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6088826183080950437
 MonoBehaviour:
@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e31c45bcd0af7a744a64c6d0b0b07b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threeStartsCutts: 0
-  twoStartsCutts: 0
-  levelCompleteLabel: {fileID: 0}
-  gameOverLabel: {fileID: 0}
+  number: 1
+  threeStartsCutts: 3
+  twoStartsCutts: 4
+  levelCanvas: {fileID: 0}
+  saveDataManager: {fileID: 0}

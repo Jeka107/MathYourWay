@@ -7,11 +7,11 @@ public class Destroyer : MonoBehaviour
     public delegate void OnGameOverLevel();
     public static event OnGameOverLevel onGameOverLevel;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(Enum.IsDefined(typeof(DESTROYER_GAMEOBJECT), collision.gameObject.tag))
+        if (Enum.IsDefined(typeof(DESTROYER_GAMEOBJECT), collision.gameObject.tag))
         {
-            if(collision.gameObject.tag== DESTROYER_GAMEOBJECT.Ball.ToString())
+            if (collision.gameObject.tag == DESTROYER_GAMEOBJECT.Ball.ToString())
             {
                 Debug.Log("Game Over!!!!!");
                 onGameOverLevel?.Invoke();

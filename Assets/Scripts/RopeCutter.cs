@@ -65,7 +65,6 @@ public class RopeCutter : MonoBehaviour
         {
             touchPosition = ctx.ReadValue<Vector2>();
             rb.position = Camera.main.ScreenToWorldPoint(touchPosition);
-            Debug.Log(rb.position);
 
             hit2 = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(touchPosition), Vector2.zero);
             endTime = (float)ctx.time;
@@ -80,7 +79,7 @@ public class RopeCutter : MonoBehaviour
     {
         if (cutAvailable)
         {
-            Debug.Log("Cut Started");
+            //Debug.Log("Cut Started");
 
             startTime = (float)ctx.startTime;
             StartCoroutine(CreateCutTrail());
@@ -95,7 +94,9 @@ public class RopeCutter : MonoBehaviour
     {
         if (cutAvailable)
         {
-            Debug.Log("Cut Finished");
+            DestroyCutTrail();
+
+            //Debug.Log("Cut Finished");
 
             if (ropeCut)
             {
@@ -103,7 +104,6 @@ public class RopeCutter : MonoBehaviour
                 ropeCut = false;
             }
 
-            DestroyCutTrail();
         }
     }
     private void DestroyCutTrail()

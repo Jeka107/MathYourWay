@@ -8,15 +8,12 @@ public class LevelCanvas : MonoBehaviour
     public delegate void OnPause(bool cutAvailable);
     public static event OnPause onPause;
 
-    [Header("Level Stars")]
-    [SerializeField] private int threeStartsCutts;
-    [SerializeField] private int twoStartsCutts;
-
     [Header("Labels")]
     [SerializeField] private GameObject backLabel;
     [SerializeField] private GameObject gameOverLabel;
     [SerializeField] private GameObject completeLabel;
     [SerializeField] private GameObject settingsLabel;
+    [SerializeField] private GameObject blurImage;
 
     [Header("Stars")]
     [SerializeField] private GameObject oneStar;
@@ -26,7 +23,10 @@ public class LevelCanvas : MonoBehaviour
     [Space]
     [SerializeField] private TextMeshProUGUI cuttsText;
 
-    private int currentCutts;
+    [Space]
+    [SerializeField] private Animator pause_Load;
+
+    private int cutts;
 
     private void Awake()
     {
@@ -34,45 +34,48 @@ public class LevelCanvas : MonoBehaviour
         completeLabel.SetActive(false);
         gameOverLabel.SetActive(false);
         settingsLabel.SetActive(false);
+        blurImage.SetActive(false);
 
         //stars
         oneStar.SetActive(false);
         twoStar.SetActive(false);
         threeStar.SetActive(false);
+
+        //animation
+        //pause_Load.SetBool("Load", true);
     }
     private void Start()
     {
-        RopeCutter.onCut += UpdateNumberOfCuttes;
-        Result.onCompleteLevel += CheckCompleteStars;
-
         //GameOver
         Result.onGameOverLevel += GameOverLabelOn;
         Destroyer.onGameOverLevel += GameOverLabelOn;
+        LaserObstacle.onGameOverLevel += GameOverLabelOn;
     }
     private void OnDestroy()
-    {
-        RopeCutter.onCut -= UpdateNumberOfCuttes;
-        Result.onCompleteLevel -= CheckCompleteStars;
-
+    { 
         //GameOver
         Result.onGameOverLevel -= GameOverLabelOn;
         Destroyer.onGameOverLevel -= GameOverLabelOn;
+        LaserObstacle.onGameOverLevel += GameOverLabelOn;
     }
 
     #region Labels
     public void BackLabelOn()
     {
         backLabel.SetActive(true);
+        blurImage.SetActive(true);
         Gamepause();
     }
     public void SettingsLabelOn()
     {
         settingsLabel.SetActive(true);
+        blurImage.SetActive(true);
         Gamepause();
     }
     public void GameOverLabelOn()
     {
         gameOverLabel.SetActive(true);
+        blurImage.SetActive(true);
         Gamepause();
     }
     public void LabelsOff()
@@ -81,6 +84,7 @@ public class LevelCanvas : MonoBehaviour
 
         backLabel.SetActive(false);
         settingsLabel.SetActive(false);
+        blurImage.SetActive(false);
         onPause?.Invoke(true);
     }
     private void Gamepause()
@@ -88,37 +92,36 @@ public class LevelCanvas : MonoBehaviour
         Time.timeScale = 0;
         onPause?.Invoke(false);
     }
-
+    public void LevelCompleteLabelOn(int finalCase)
+    {
+        completeLabel.SetActive(true);
+        blurImage.SetActive(true);
+        switch (finalCase)
+        {
+            case 1:
+                //Debug.Log("1 Star");
+                oneStar.SetActive(true);
+                break;
+            case 2:
+                //Debug.Log("2 Star");
+                oneStar.SetActive(true);
+                twoStar.SetActive(true);
+                break;
+            case 3:
+                //Debug.Log("3 Star");
+                oneStar.SetActive(true);
+                twoStar.SetActive(true);
+                threeStar.SetActive(true);
+                break;
+        }
+    }
     #endregion
 
     #region Cutts_And_Start
-    private void UpdateNumberOfCuttes()
+    public void UpdateNumberOfCuttesText(int currentCutts)
     {
-        currentCutts++;
+        cutts = currentCutts;
         cuttsText.text = currentCutts.ToString();
-    }
-    private void CheckCompleteStars()
-    {
-        completeLabel.SetActive(true);
-
-        if (currentCutts <= threeStartsCutts)
-        {
-            Debug.Log("3 Star");
-            oneStar.SetActive(true);
-            twoStar.SetActive(true);
-            threeStar.SetActive(true);
-        }
-        else if (currentCutts <= twoStartsCutts)
-        {
-            Debug.Log("2 Star");
-            oneStar.SetActive(true);
-            twoStar.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("1 Star");
-            oneStar.SetActive(true);
-        }
     }
     #endregion
 }

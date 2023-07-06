@@ -11,12 +11,29 @@ public class Ball : MonoBehaviour
     [SerializeField] public string arithmeticAction;
 
     private Arithmetic arithmetic;
+    private float y;
 
     private void Start()
     {
+        y = transform.position.y;
         arithmetic = GetComponent<Arithmetic>();
     }
-
+    private void Update()
+    {
+        if (gameObject.GetComponents<HingeJoint2D>() != null)
+        {
+            foreach (HingeJoint2D joint in gameObject.GetComponents<HingeJoint2D>())
+            {
+                if (joint.connectedBody == null)
+                    Destroy(joint);
+            }
+        }
+        
+        if (gameObject.GetComponent<HingeJoint2D>() == null)
+        {
+            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        }
+    }
     public void UpdateBallInfo(Color _ballColor, int _value)
     {
         ballColor = _ballColor;
@@ -37,6 +54,7 @@ public class Ball : MonoBehaviour
 
         gameObject.layer = LayerMask.NameToLayer("Ball");
         gameObject.tag = "Ball";
+        gameObject.GetComponent<Rigidbody2D>().constraints= RigidbodyConstraints2D.FreezeRotation;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -23,7 +23,7 @@ public class Hook : MonoBehaviour
 
         //First piece on the hook and connect to the hook.
         currentPieceOfRope = Instantiate(pieceOfRope, transform);
-        currentPieceOfRope.transform.localScale = firstPieceScale;
+        //currentPieceOfRope.transform.localScale = firstPieceScale;
         currentPieceOfRope.GetComponent<HingeJoint2D>().connectedBody = rb;
         currentRb = currentPieceOfRope.GetComponent<Rigidbody2D>();
 

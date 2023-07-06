@@ -24,12 +24,12 @@ public class Result : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<Ball>().value == result)
             {
-                Debug.Log("Level Complete");
+                //Debug.Log("Level Complete");
                 onCompleteLevel?.Invoke();
             }
             else
             {
-                Debug.Log("Game Over");
+                //Debug.Log("Game Over");
                 onGameOverLevel?.Invoke();
             }
             Destroy(collision.gameObject); 

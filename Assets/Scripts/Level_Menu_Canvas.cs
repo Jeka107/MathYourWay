@@ -7,12 +7,15 @@ using TMPro;
 public class Level_Menu_Canvas : MonoBehaviour
 {
     [SerializeField] private GameObject startLevelLabel;
+    [SerializeField] private GameObject settingsLabel;
     [SerializeField] private GameObject blurImage;
+
     private string currentLevel;
 
     private void Awake()
     {
         startLevelLabel.SetActive(false);
+        settingsLabel.SetActive(false);
         blurImage.SetActive(false);
     }
     private void Start()
@@ -32,11 +35,18 @@ public class Level_Menu_Canvas : MonoBehaviour
         blurImage.SetActive(true);
         startLevelLabel.GetComponentInChildren<TextMeshProUGUI>().text = "level " + level;
     }
-    public void StartLevelLabelOff()
+    public void SettingsLabelOn()
     {
-        startLevelLabel.SetActive(false);
+        settingsLabel.SetActive(true);
+        blurImage.SetActive(true);
+    }
+    public void LabelsOff()
+    {
+        startLevelLabel.SetActive(false); 
+        settingsLabel.SetActive(false);
         blurImage.SetActive(false);
     }
+
     public void LoadLevel()
     {
         SceneManager.LoadScene("Level " + currentLevel);
