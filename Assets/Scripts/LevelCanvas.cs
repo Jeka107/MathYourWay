@@ -13,6 +13,7 @@ public class LevelCanvas : MonoBehaviour
     [SerializeField] private GameObject gameOverLabel;
     [SerializeField] private GameObject completeLabel;
     [SerializeField] private GameObject settingsLabel;
+    [SerializeField] private GameObject informationLabel;
     [SerializeField] private GameObject blurImage;
 
     [Header("Stars")]
@@ -34,6 +35,7 @@ public class LevelCanvas : MonoBehaviour
         completeLabel.SetActive(false);
         gameOverLabel.SetActive(false);
         settingsLabel.SetActive(false);
+        informationLabel.SetActive(false);
         blurImage.SetActive(false);
 
         //stars
@@ -78,12 +80,19 @@ public class LevelCanvas : MonoBehaviour
         blurImage.SetActive(true);
         Gamepause();
     }
+    public void InformationLabelOn()
+    {
+        informationLabel.SetActive(true);
+        blurImage.SetActive(true);
+        Gamepause();
+    }
     public void LabelsOff()
     {
         Time.timeScale = 1;
 
         backLabel.SetActive(false);
         settingsLabel.SetActive(false);
+        informationLabel.SetActive(false);
         blurImage.SetActive(false);
         onPause?.Invoke(true);
     }

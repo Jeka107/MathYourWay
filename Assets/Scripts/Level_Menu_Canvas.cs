@@ -33,7 +33,7 @@ public class Level_Menu_Canvas : MonoBehaviour
         currentLevel = level;
         startLevelLabel.SetActive(true);
         blurImage.SetActive(true);
-        startLevelLabel.GetComponentInChildren<TextMeshProUGUI>().text = "level " + level;
+        startLevelLabel.GetComponentInChildren<TextMeshProUGUI>().text = "level "+"\n" + level;
     }
     public void SettingsLabelOn()
     {

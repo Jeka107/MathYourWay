@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0b689d00f59fff8438341e737e965045, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6cada726ccef89d4ca10d0c02f62aefb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -122,7 +122,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Level_Menu_Canvas, Assembly-CSharp
+        m_TargetAssemblyTypeName: MainMenuCanvas, Assembly-CSharp
         m_MethodName: SettingsLabelOn
         m_Mode: 1
         m_Arguments:

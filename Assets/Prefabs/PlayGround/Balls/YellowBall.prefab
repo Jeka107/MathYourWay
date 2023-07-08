@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 256965273125149716}
   - component: {fileID: 1119421764423370526}
   m_Layer: 3
-  m_Name: PinkBall
+  m_Name: YellowBall
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,7 +317,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 76bdeb4bbd562dc4cac8dec98176c0a5, type: 3}
-  m_Color: {r: 0.8679245, g: 0.22435024, b: 0.75646746, a: 1}
+  m_Color: {r: 0.84710383, g: 0.8666667, b: 0.2235294, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

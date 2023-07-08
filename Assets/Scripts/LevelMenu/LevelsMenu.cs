@@ -37,10 +37,7 @@ public class LevelsMenu : MonoBehaviour
             LevelStartInMenu level = transform.GetChild(i).GetComponent<LevelStartInMenu>();
             level.UnLockLevel();
 
-            if(playerSavedData[i].stars==3)
-            {
-                level.PerfectComplete();
-            }
+            level.StarsCompleted(playerSavedData[i].stars);
         }
     }
 }
