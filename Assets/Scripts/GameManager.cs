@@ -51,8 +51,8 @@ public class GameManager : MonoBehaviour
         {
             finalCase = 1;
         }
-        saveDataManager.UpdateDataList(number,finalCase);
-        levelCanvas.LevelCompleteLabelOn(finalCase);
+        saveDataManager?.UpdateDataList(number,finalCase);
+        levelCanvas?.LevelCompleteLabelOn(finalCase);
     }
 
     #region SceneManagment

@@ -8,8 +8,12 @@ public class RopeCutter : MonoBehaviour
     public delegate void OnCut();
     public static event OnCut onCut;
 
+    public delegate void OnSlash();
+    public static event OnSlash onSlash;
+
     [SerializeField] private GameObject cutTrailPrefab;
     [SerializeField] private float maxTime;
+    [SerializeField] private float minTimeSlashStart;
 
     private Rigidbody2D rb;
     private GameObject currentCutTrail;
@@ -19,6 +23,7 @@ public class RopeCutter : MonoBehaviour
     private bool ropeCut;
     private float startTime;
     private float endTime;
+    private bool soundPlayed = false;
 
     private void Awake()
     {
@@ -31,10 +36,6 @@ public class RopeCutter : MonoBehaviour
         InputManager.playerInput.Player.Touch.canceled += StopCutting;
 
         LevelCanvas.onPause += CutAvailable;
-    }
-    void Start()
-    {
-        
     }
 
     private void OnDestroy()
@@ -64,23 +65,31 @@ public class RopeCutter : MonoBehaviour
         if (cutAvailable)
         {
             touchPosition = ctx.ReadValue<Vector2>();
+            
             rb.position = Camera.main.ScreenToWorldPoint(touchPosition);
 
             hit2 = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(touchPosition), Vector2.zero);
             endTime = (float)ctx.time;
-
+            /*if (!soundPlayed)
+            {
+                Debug.Log(1);
+                if ((endTime - startTime) > minTimeSlashStart)
+                {
+                    onSlash?.Invoke();
+                }
+                soundPlayed = true;
+            }*/
             if ((endTime - startTime) > maxTime)
             {
                 DestroyCutTrail();
             }
+            
         }
     }
     private void StartCutting(InputAction.CallbackContext ctx)
     {
         if (cutAvailable)
         {
-            //Debug.Log("Cut Started");
-
             startTime = (float)ctx.startTime;
             StartCoroutine(CreateCutTrail());
         }
@@ -88,15 +97,15 @@ public class RopeCutter : MonoBehaviour
     IEnumerator CreateCutTrail()
     {
         yield return new WaitForFixedUpdate();
+
         currentCutTrail = Instantiate(cutTrailPrefab, transform);
     }
     private void StopCutting(InputAction.CallbackContext ctx)
     {
         if (cutAvailable)
         {
+            soundPlayed = false;
             DestroyCutTrail();
-
-            //Debug.Log("Cut Finished");
 
             if (ropeCut)
             {

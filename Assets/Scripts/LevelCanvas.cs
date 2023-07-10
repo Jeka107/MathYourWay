@@ -8,6 +8,9 @@ public class LevelCanvas : MonoBehaviour
     public delegate void OnPause(bool cutAvailable);
     public static event OnPause onPause;
 
+    public delegate void OnClick();
+    public static event OnClick onClick;
+
     [Header("Labels")]
     [SerializeField] private GameObject backLabel;
     [SerializeField] private GameObject gameOverLabel;
@@ -64,12 +67,14 @@ public class LevelCanvas : MonoBehaviour
     #region Labels
     public void BackLabelOn()
     {
+        onClick?.Invoke();
         backLabel.SetActive(true);
         blurImage.SetActive(true);
         Gamepause();
     }
     public void SettingsLabelOn()
     {
+        onClick?.Invoke();
         settingsLabel.SetActive(true);
         blurImage.SetActive(true);
         Gamepause();
@@ -82,6 +87,7 @@ public class LevelCanvas : MonoBehaviour
     }
     public void InformationLabelOn()
     {
+        onClick?.Invoke();
         informationLabel.SetActive(true);
         blurImage.SetActive(true);
         Gamepause();
@@ -105,6 +111,8 @@ public class LevelCanvas : MonoBehaviour
     {
         completeLabel.SetActive(true);
         blurImage.SetActive(true);
+        Time.timeScale = 0;
+
         switch (finalCase)
         {
             case 1:

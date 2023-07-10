@@ -5,6 +5,9 @@ using TMPro;
 
 public class Ball : MonoBehaviour
 {
+    public delegate void OnBallMerged();
+    public static event OnBallMerged onBallMerged;
+
     [SerializeField] private Color ballColor;
     [SerializeField] public int value;
     [SerializeField] private TextMeshProUGUI text;
@@ -62,6 +65,7 @@ public class Ball : MonoBehaviour
         if (collision.transform.tag == "ColoredBall")
         {
             //add sound of ball collision.
+            onBallMerged?.Invoke();
 
             var otherBall = collision.gameObject.GetComponent<Ball>();
             var newValue = arithmetic.ArithmeticAction(otherBall.arithmeticAction, value, otherBall.value);
@@ -75,6 +79,7 @@ public class Ball : MonoBehaviour
         if (collision.transform.tag == "ColoredBall")
         {
             //add sound of ball collision.
+            onBallMerged?.Invoke();
 
             var otherBall = collision.gameObject.GetComponent<Ball>();
             var newValue = arithmetic.ArithmeticAction(otherBall.arithmeticAction, value, otherBall.value);

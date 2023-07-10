@@ -64,6 +64,9 @@ public class SaveDataManager : MonoBehaviour
     }
     public void UpdateDataList(int level,int _stars)
     {
+        if (levels == null)
+            return;
+
         if (levels[level - 1] != null)
         {
             if (levels[level - 1].stars < _stars)
