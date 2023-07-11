@@ -57,24 +57,28 @@ public class LevelCanvas : MonoBehaviour
         LaserObstacle.onGameOverLevel += GameOverLabelOn;
     }
     private void OnDestroy()
-    { 
+    {
         //GameOver
         Result.onGameOverLevel -= GameOverLabelOn;
         Destroyer.onGameOverLevel -= GameOverLabelOn;
         LaserObstacle.onGameOverLevel += GameOverLabelOn;
     }
+    public void SoundEffectClick()
+    {
+        onClick?.Invoke();
+    }
 
     #region Labels
     public void BackLabelOn()
     {
-        onClick?.Invoke();
+        SoundEffectClick();
         backLabel.SetActive(true);
         blurImage.SetActive(true);
         Gamepause();
     }
     public void SettingsLabelOn()
     {
-        onClick?.Invoke();
+        SoundEffectClick();
         settingsLabel.SetActive(true);
         blurImage.SetActive(true);
         Gamepause();
@@ -87,7 +91,7 @@ public class LevelCanvas : MonoBehaviour
     }
     public void InformationLabelOn()
     {
-        onClick?.Invoke();
+        SoundEffectClick();
         informationLabel.SetActive(true);
         blurImage.SetActive(true);
         Gamepause();
@@ -96,6 +100,7 @@ public class LevelCanvas : MonoBehaviour
     {
         Time.timeScale = 1;
 
+        SoundEffectClick();
         backLabel.SetActive(false);
         settingsLabel.SetActive(false);
         informationLabel.SetActive(false);

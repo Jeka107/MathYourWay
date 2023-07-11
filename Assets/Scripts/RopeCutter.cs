@@ -22,8 +22,9 @@ public class RopeCutter : MonoBehaviour
     private bool cutAvailable=true;
     private bool ropeCut;
     private float startTime;
+    private float performedTime;
     private float endTime;
-    private bool soundPlayed = false;
+    private bool soundOn = false;
 
     private void Awake()
     {
@@ -48,48 +49,51 @@ public class RopeCutter : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Piece")
+        if (currentCutTrail)
         {
-            Transform hook = collision.transform.parent;
-
-            foreach (Transform piece in hook)
+            if (collision.gameObject.tag == "Piece")
             {
-                if (piece.tag == "Piece")
-                    Destroy(piece.gameObject);
+                Transform hook = collision.transform.parent;
+
+                foreach (Transform piece in hook)
+                {
+                    if (piece.tag == "Piece")
+                        Destroy(piece.gameObject);
+                }
+                ropeCut = true;
             }
-            ropeCut = true;
         }
     }
     private void UpdateCut(InputAction.CallbackContext ctx)
     {
         if (cutAvailable)
         {
+            if ((performedTime - startTime) > maxTime)
+            {
+                ropeCut = false;
+                DestroyCutTrail();
+            }
+
             touchPosition = ctx.ReadValue<Vector2>();
-            
+
             rb.position = Camera.main.ScreenToWorldPoint(touchPosition);
 
             hit2 = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(touchPosition), Vector2.zero);
-            endTime = (float)ctx.time;
-            /*if (!soundPlayed)
-            {
-                Debug.Log(1);
-                if ((endTime - startTime) > minTimeSlashStart)
-                {
-                    onSlash?.Invoke();
-                }
-                soundPlayed = true;
-            }*/
-            if ((endTime - startTime) > maxTime)
-            {
-                DestroyCutTrail();
-            }
+            performedTime = (float)ctx.time;
+
             
+            if (currentCutTrail && soundOn)
+            {
+                onSlash?.Invoke();
+                soundOn = false;
+            }
         }
     }
     private void StartCutting(InputAction.CallbackContext ctx)
     {
         if (cutAvailable)
         {
+            soundOn = true;
             startTime = (float)ctx.startTime;
             StartCoroutine(CreateCutTrail());
         }
@@ -97,14 +101,13 @@ public class RopeCutter : MonoBehaviour
     IEnumerator CreateCutTrail()
     {
         yield return new WaitForFixedUpdate();
-
         currentCutTrail = Instantiate(cutTrailPrefab, transform);
     }
     private void StopCutting(InputAction.CallbackContext ctx)
     {
         if (cutAvailable)
         {
-            soundPlayed = false;
+            endTime = (float)ctx.time;
             DestroyCutTrail();
 
             if (ropeCut)
@@ -112,7 +115,7 @@ public class RopeCutter : MonoBehaviour
                 onCut?.Invoke();
                 ropeCut = false;
             }
-
+            soundOn = true;
         }
     }
     private void DestroyCutTrail()
