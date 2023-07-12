@@ -12,12 +12,14 @@ public class AudioController : MonoBehaviour
     private void Start()
     {
         LevelCanvas.onClick += ClickButton;
+        GameManager.onClick += ClickButton;
         Ball.onBallMerged += BallMerged;
         RopeCutter.onSlash += Slash;
     }
     private void OnDestroy()
     {
         LevelCanvas.onClick -= ClickButton;
+        GameManager.onClick -= ClickButton;
         Ball.onBallMerged -= BallMerged;
         RopeCutter.onSlash -= Slash;
     }

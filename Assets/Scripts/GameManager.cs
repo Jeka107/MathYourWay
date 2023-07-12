@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public delegate void OnClick();
+    public static event OnClick onClick;
+
     [Header("Level")]
     [SerializeField] private int number;
 
@@ -15,7 +18,9 @@ public class GameManager : MonoBehaviour
 
     [Space]
     [SerializeField] private LevelCanvas levelCanvas;
-    
+    [SerializeField] private float waitBeforeLoadScene;
+
+
     private SaveDataManager saveDataManager;
     private int currentCutts; //count numbers of cutts.
     
@@ -58,22 +63,45 @@ public class GameManager : MonoBehaviour
     #region SceneManagment
     public void RestartScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         GameUnPause();
+        PlaySoundEffect();
+        StartCoroutine(Restart());
+    }
+    IEnumerator Restart()
+    {
+        yield return new WaitForSeconds(waitBeforeLoadScene);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
     public void LoadNextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         GameUnPause();
+        PlaySoundEffect();
+        StartCoroutine(LoadNext());
+    }
+    IEnumerator LoadNext()
+    {
+        yield return new WaitForSeconds(waitBeforeLoadScene);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void BackToLevelMenu()
     {
-        SceneManager.LoadScene("LevelsMenu");
         GameUnPause();
+        PlaySoundEffect();
+        StartCoroutine(ToLevelMenu());
+    }
+    IEnumerator ToLevelMenu()
+    {
+        yield return new WaitForSeconds(waitBeforeLoadScene);
+        SceneManager.LoadScene("LevelsMenu");
     }
     #endregion
     private void GameUnPause()
     {
         Time.timeScale = 1;
+    }
+    private void PlaySoundEffect()
+    {
+        onClick?.Invoke();
     }
 }

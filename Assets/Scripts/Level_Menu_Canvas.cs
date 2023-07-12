@@ -9,6 +9,9 @@ public class Level_Menu_Canvas : MonoBehaviour
     [SerializeField] private GameObject startLevelLabel;
     [SerializeField] private GameObject settingsLabel;
     [SerializeField] private GameObject blurImage;
+    [Space]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private float waitBeforeLoad;
 
     private string currentLevel;
 
@@ -30,6 +33,8 @@ public class Level_Menu_Canvas : MonoBehaviour
     //Start_Level
     private void StartLevelLabelOn(string level)
     {
+        audioSource.Play();
+
         currentLevel = level;
         startLevelLabel.SetActive(true);
         blurImage.SetActive(true);
@@ -37,11 +42,15 @@ public class Level_Menu_Canvas : MonoBehaviour
     }
     public void SettingsLabelOn()
     {
+        audioSource.Play();
+
         settingsLabel.SetActive(true);
         blurImage.SetActive(true);
     }
     public void LabelsOff()
     {
+        audioSource.Play();
+
         startLevelLabel.SetActive(false); 
         settingsLabel.SetActive(false);
         blurImage.SetActive(false);
@@ -49,6 +58,13 @@ public class Level_Menu_Canvas : MonoBehaviour
 
     public void LoadLevel()
     {
+        audioSource.Play();
+        StartCoroutine(Load());
+    }
+    IEnumerator Load()
+    {
+        yield return new WaitForSeconds(waitBeforeLoad);
+
         SceneManager.LoadScene("Level " + currentLevel);
     }
 }

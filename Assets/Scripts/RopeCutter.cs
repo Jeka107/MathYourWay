@@ -78,7 +78,8 @@ public class RopeCutter : MonoBehaviour
 
             rb.position = Camera.main.ScreenToWorldPoint(touchPosition);
 
-            hit2 = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(touchPosition), Vector2.zero);
+            //hit2 = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(touchPosition), Vector2.zero);
+
             performedTime = (float)ctx.time;
 
             
