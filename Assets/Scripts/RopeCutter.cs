@@ -15,6 +15,9 @@ public class RopeCutter : MonoBehaviour
     [SerializeField] private float maxTime;
     [SerializeField] private float minTimeSlashStart;
 
+    [Space]
+    [SerializeField] private Settings settings;
+
     private Rigidbody2D rb;
     private GameObject currentCutTrail;
     private Vector2 touchPosition;
@@ -85,7 +88,8 @@ public class RopeCutter : MonoBehaviour
             
             if (currentCutTrail && soundOn)
             {
-                onSlash?.Invoke();
+                if(settings.GetSoundEffectStatus())
+                    onSlash?.Invoke();
                 soundOn = false;
             }
         }

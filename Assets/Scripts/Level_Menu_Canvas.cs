@@ -6,6 +6,9 @@ using TMPro;
 
 public class Level_Menu_Canvas : MonoBehaviour
 {
+    public delegate void OnClick();
+    public static event OnClick onClick;
+
     [SerializeField] private GameObject startLevelLabel;
     [SerializeField] private GameObject blurImage;
 
@@ -14,7 +17,6 @@ public class Level_Menu_Canvas : MonoBehaviour
     [SerializeField] private Settings settings;
     
     [Space]
-    [SerializeField] private AudioSource audioSource;
     [SerializeField] private float waitBeforeLoad;
 
     private string currentLevel;
@@ -63,10 +65,9 @@ public class Level_Menu_Canvas : MonoBehaviour
 
         SceneManager.LoadScene("Level " + currentLevel);
     }
-    
     private void PlaySoundEffect()
     {
         if (settings.GetSoundEffectStatus())
-            audioSource.Play();
+            onClick?.Invoke();
     }
 }

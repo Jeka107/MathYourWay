@@ -15,7 +15,6 @@ public class LevelCanvas : MonoBehaviour
     [SerializeField] private GameObject backLabel;
     [SerializeField] private GameObject gameOverLabel;
     [SerializeField] private GameObject completeLabel;
-    [SerializeField] private GameObject settingsLabel;
     [SerializeField] private GameObject informationLabel;
     [SerializeField] private GameObject blurImage;
 
@@ -30,6 +29,9 @@ public class LevelCanvas : MonoBehaviour
     [Space]
     [SerializeField] private Animator pause_Load;
 
+    [Space]
+    [SerializeField] private Settings settings;
+
     private int cutts;
 
     private void Awake()
@@ -37,7 +39,6 @@ public class LevelCanvas : MonoBehaviour
         backLabel.SetActive(false);
         completeLabel.SetActive(false);
         gameOverLabel.SetActive(false);
-        settingsLabel.SetActive(false);
         informationLabel.SetActive(false);
         blurImage.SetActive(false);
 
@@ -65,7 +66,8 @@ public class LevelCanvas : MonoBehaviour
     }
     public void SoundEffectClick()
     {
-        onClick?.Invoke();
+        if(settings.GetSoundEffectStatus())
+            onClick?.Invoke();
     }
 
     #region Labels
@@ -79,7 +81,6 @@ public class LevelCanvas : MonoBehaviour
     public void SettingsLabelOn()
     {
         SoundEffectClick();
-        settingsLabel.SetActive(true);
         blurImage.SetActive(true);
         Gamepause();
     }
@@ -102,7 +103,6 @@ public class LevelCanvas : MonoBehaviour
 
         SoundEffectClick();
         backLabel.SetActive(false);
-        settingsLabel.SetActive(false);
         informationLabel.SetActive(false);
         blurImage.SetActive(false);
         onPause?.Invoke(true);

@@ -13,9 +13,14 @@ public class Ball : MonoBehaviour
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] public string arithmeticAction;
 
+
+    private Settings settings;
     private Arithmetic arithmetic;
     private float y;
-
+    private void Awake()
+    {
+        settings = FindAnyObjectByType<Settings>();
+    }
     private void Start()
     {
         y = transform.position.y;
@@ -64,8 +69,7 @@ public class Ball : MonoBehaviour
     {
         if (collision.transform.tag == "ColoredBall")
         {
-            //add sound of ball collision.
-            onBallMerged?.Invoke();
+            PlaySoundEffect();
 
             var otherBall = collision.gameObject.GetComponent<Ball>();
             var newValue = arithmetic.ArithmeticAction(otherBall.arithmeticAction, value, otherBall.value);
@@ -78,8 +82,7 @@ public class Ball : MonoBehaviour
     {
         if (collision.transform.tag == "ColoredBall")
         {
-            //add sound of ball collision.
-            onBallMerged?.Invoke();
+            PlaySoundEffect();
 
             var otherBall = collision.gameObject.GetComponent<Ball>();
             var newValue = arithmetic.ArithmeticAction(otherBall.arithmeticAction, value, otherBall.value);
@@ -97,5 +100,10 @@ public class Ball : MonoBehaviour
         }
         else
             gameObject.layer = LayerMask.NameToLayer("Ball");
+    }
+    private void PlaySoundEffect()
+    {
+        if(settings.GetSoundEffectStatus())
+            onBallMerged?.Invoke();
     }
 }

@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LevelCanvas levelCanvas;
     [SerializeField] private float waitBeforeLoadScene;
 
+    [Space]
+    [SerializeField] private Settings settings;
 
     private SaveDataManager saveDataManager;
     private int currentCutts; //count numbers of cutts.
@@ -102,6 +104,7 @@ public class GameManager : MonoBehaviour
     }
     private void PlaySoundEffect()
     {
-        onClick?.Invoke();
+        if(settings.GetSoundEffectStatus())
+            onClick?.Invoke();
     }
 }

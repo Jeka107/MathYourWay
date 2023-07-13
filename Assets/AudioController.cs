@@ -9,16 +9,34 @@ public class AudioController : MonoBehaviour
     [SerializeField] private AudioClip ballMerged;
     [SerializeField] private AudioClip slash;
 
+    private static bool created = false;
+
+    private void Awake()
+    {
+        if (!created)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            created = true;
+        }
+    }
     private void Start()
     {
+        MainMenuCanvas.onClick += ClickButton;
+        Level_Menu_Canvas.onClick += ClickButton;
+        Settings.onClick += ClickButton;
         LevelCanvas.onClick += ClickButton;
+
         GameManager.onClick += ClickButton;
         Ball.onBallMerged += BallMerged;
         RopeCutter.onSlash += Slash;
     }
     private void OnDestroy()
     {
+        MainMenuCanvas.onClick -= ClickButton;
+        Level_Menu_Canvas.onClick -= ClickButton;
+        Settings.onClick -= ClickButton;
         LevelCanvas.onClick -= ClickButton;
+
         GameManager.onClick -= ClickButton;
         Ball.onBallMerged -= BallMerged;
         RopeCutter.onSlash -= Slash;

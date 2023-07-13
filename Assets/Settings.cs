@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
+    public delegate void OnClick();
+    public static event OnClick onClick;
+
     [SerializeField] private GameObject settingsLabel;
+    [SerializeField] private GameObject blurImage;
 
     [Space]
     [Header("Sound Effect")]
@@ -24,17 +28,19 @@ public class Settings : MonoBehaviour
     }
     public void SettingsLabelOn()
     {
-        //PlaySoundEffect();
+        if(soundEffectStatus)
+            onClick?.Invoke();
 
         settingsLabel.SetActive(true);
-        //blurImage.SetActive(true);
+        blurImage.SetActive(true);
     }
     public void SettingsLabelOff()
     {
-        //PlaySoundEffect();
+        if (soundEffectStatus)
+            onClick?.Invoke();
 
         settingsLabel.SetActive(false);
-        //blurImage.SetActive(false);
+        blurImage.SetActive(false);
     }
 
     private void SoundEffectStatus()
@@ -60,6 +66,7 @@ public class Settings : MonoBehaviour
         }
         else
         {
+            onClick?.Invoke();
             soundEffectStatus = true;
             soundEffectOff.SetActive(false);
             soundEffectOn.SetActive(true);

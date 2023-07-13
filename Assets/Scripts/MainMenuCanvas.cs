@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuCanvas : MonoBehaviour
 {
+    public delegate void OnClick();
+    public static event OnClick onClick;
+
     [SerializeField] private GameObject blurImage;
 
     [Space]
@@ -27,17 +30,14 @@ public class MainMenuCanvas : MonoBehaviour
 
     public void StartGame()
     {
-        PlaySoundEffect();
+        if (settings.GetSoundEffectStatus())
+            onClick?.Invoke();
+
         StartCoroutine(LoadNextScene());
     }
     IEnumerator LoadNextScene()
     {
         yield return new WaitForSeconds(waitBeforeLoad);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-    private void PlaySoundEffect()
-    {
-        if (settings.GetSoundEffectStatus())
-            audioSource.Play();
     }
 }
