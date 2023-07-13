@@ -11,6 +11,7 @@ public class LevelsMenu : MonoBehaviour
     private void Awake()
     {
         PlaceNumberOnLevels();
+        saveDataManager = FindAnyObjectByType<SaveDataManager>();
 
         playerSavedData = saveDataManager.LoadData();
         if(playerSavedData!=null)

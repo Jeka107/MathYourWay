@@ -5,21 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuCanvas : MonoBehaviour
 {
-    [SerializeField] private GameObject settingsLabel;
     [SerializeField] private GameObject blurImage;
 
+    [Space]
+    [Header("Settings")]
+    [SerializeField] private Settings settings;
+    
     [Space]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private float waitBeforeLoad;
 
+    [Space]
+    [Header("Sound Effect")]
+    [SerializeField] private GameObject soundEffectOn;
+    [SerializeField] private GameObject soundEffectOff;
+
     private void Awake()
     {
-        settingsLabel.SetActive(false);
         blurImage.SetActive(false);
     }
+
     public void StartGame()
     {
-        audioSource.Play();
+        PlaySoundEffect();
         StartCoroutine(LoadNextScene());
     }
     IEnumerator LoadNextScene()
@@ -27,16 +35,9 @@ public class MainMenuCanvas : MonoBehaviour
         yield return new WaitForSeconds(waitBeforeLoad);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    public void SettingsLabelOn()
+    private void PlaySoundEffect()
     {
-        audioSource.Play();
-        settingsLabel.SetActive(true);
-        blurImage.SetActive(true);
-    }
-    public void SettingsLabelOff()
-    {
-        audioSource.Play();
-        settingsLabel.SetActive(false);
-        blurImage.SetActive(false);
+        if (settings.GetSoundEffectStatus())
+            audioSource.Play();
     }
 }

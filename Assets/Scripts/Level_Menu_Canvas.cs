@@ -7,8 +7,12 @@ using TMPro;
 public class Level_Menu_Canvas : MonoBehaviour
 {
     [SerializeField] private GameObject startLevelLabel;
-    [SerializeField] private GameObject settingsLabel;
     [SerializeField] private GameObject blurImage;
+
+    [Space]
+    [Header("Settings")]
+    [SerializeField] private Settings settings;
+    
     [Space]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private float waitBeforeLoad;
@@ -18,7 +22,6 @@ public class Level_Menu_Canvas : MonoBehaviour
     private void Awake()
     {
         startLevelLabel.SetActive(false);
-        settingsLabel.SetActive(false);
         blurImage.SetActive(false);
     }
     private void Start()
@@ -33,32 +36,25 @@ public class Level_Menu_Canvas : MonoBehaviour
     //Start_Level
     private void StartLevelLabelOn(string level)
     {
-        audioSource.Play();
+        PlaySoundEffect();
 
         currentLevel = level;
         startLevelLabel.SetActive(true);
         blurImage.SetActive(true);
         startLevelLabel.GetComponentInChildren<TextMeshProUGUI>().text = "level "+"\n" + level;
     }
-    public void SettingsLabelOn()
-    {
-        audioSource.Play();
-
-        settingsLabel.SetActive(true);
-        blurImage.SetActive(true);
-    }
+    
     public void LabelsOff()
     {
-        audioSource.Play();
+        PlaySoundEffect();
 
         startLevelLabel.SetActive(false); 
-        settingsLabel.SetActive(false);
         blurImage.SetActive(false);
     }
 
     public void LoadLevel()
     {
-        audioSource.Play();
+        PlaySoundEffect();
         StartCoroutine(Load());
     }
     IEnumerator Load()
@@ -66,5 +62,11 @@ public class Level_Menu_Canvas : MonoBehaviour
         yield return new WaitForSeconds(waitBeforeLoad);
 
         SceneManager.LoadScene("Level " + currentLevel);
+    }
+    
+    private void PlaySoundEffect()
+    {
+        if (settings.GetSoundEffectStatus())
+            audioSource.Play();
     }
 }

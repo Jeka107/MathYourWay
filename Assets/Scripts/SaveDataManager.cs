@@ -36,9 +36,11 @@ public static class JsonHelper
 public class SaveDataManager : MonoBehaviour
 {
     private static List<PlayerSavedData> levels= new List<PlayerSavedData>();
+    private bool soundEffectStatus;
 
     private string saveFolderName = "Saved_Data_JSON";
     private string saveFileName = "save_json1.sav";
+    private string saveFileNameSettings = "Settings_json1.sav";
 
     private static bool created = false;
     private string password = "Jeka";
@@ -46,6 +48,8 @@ public class SaveDataManager : MonoBehaviour
 
     private void Awake()
     {
+        soundEffectStatus = LoadSettingsData();
+
         if (!created)
         {
             if (LoadData() == null)
@@ -57,11 +61,14 @@ public class SaveDataManager : MonoBehaviour
             {
                 levels = LoadData();
             }
+            
+            SaveSettingsData();
 
             DontDestroyOnLoad(this.gameObject);
             created = true; 
         }
     }
+    #region GamePlaySave
     public void UpdateDataList(int level,int _stars)
     {
         if (levels == null)
@@ -87,8 +94,12 @@ public class SaveDataManager : MonoBehaviour
     public void SaveData()
     {
         string filePath = Application.persistentDataPath + "/" + saveFolderName + "/" + saveFileName;
-        //Debug.Log(filePath);
-        Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+        
+        if (!System.IO.File.Exists(filePath))
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+        }
+
         string dataInJSON = JsonHelper.ToJson(levels, true);
         FileStream fs = new FileStream(filePath, FileMode.Create);
 
@@ -134,6 +145,78 @@ public class SaveDataManager : MonoBehaviour
             return null;
         
     }
+    #endregion
+
+    #region SettingsSave
+
+    public void SetSoundStatus(bool _soundEffectStatus)
+    {
+        soundEffectStatus = _soundEffectStatus;
+        SaveSettingsData();
+    }
+
+    public void SaveSettingsData()
+    {
+        PlayerSavedSettings dataToSave = new PlayerSavedSettings(soundEffectStatus);
+            
+        string filePath = Application.persistentDataPath + "/" + saveFolderName + "/" + saveFileNameSettings;
+
+        if (!System.IO.File.Exists(filePath))
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+        }
+
+        string dataInJSON = JsonUtility.ToJson(dataToSave, true);
+
+        FileStream fs = new FileStream(filePath, FileMode.Create);
+
+        StreamWriter sw = new StreamWriter(fs);
+
+        if (encrypt)
+        {
+            dataInJSON = EncryptDecrypt(dataInJSON);
+        }
+
+        sw.Write(dataInJSON);
+
+        sw.Close();
+        fs.Close();
+    }
+    public bool LoadSettingsData()
+    {
+        string filePath = Application.persistentDataPath + "/" + saveFolderName + "/" + saveFileNameSettings;
+
+        string dataToLoad = "";
+
+        if (System.IO.File.Exists(filePath))
+        {
+            FileStream fs = new FileStream(filePath, FileMode.Open);
+
+            StreamReader sr = new StreamReader(fs);
+
+            dataToLoad = sr.ReadToEnd();
+
+            if (encrypt)
+            {
+                dataToLoad = EncryptDecrypt(dataToLoad);
+            }
+
+            PlayerSavedSettings loadedData =
+                JsonUtility.FromJson<PlayerSavedSettings>(dataToLoad);
+
+            soundEffectStatus = loadedData.soundEffectStatus;
+
+            sr.Close();
+            fs.Close();
+
+            return soundEffectStatus;
+        }
+        else
+            return true;
+        
+    }
+
+    #endregion
     private string EncryptDecrypt(string data)
     {
         string newData = "";
