@@ -23,7 +23,8 @@ public class Settings : MonoBehaviour
         settingsLabel.SetActive(false);
 
         saveDataManager = FindAnyObjectByType<SaveDataManager>();
-        soundEffectStatus = saveDataManager.LoadSettingsData();
+        if(saveDataManager!=null)
+            soundEffectStatus = saveDataManager.LoadSettingsData();
         SoundEffectStatus();
     }
     public void SettingsLabelOn()

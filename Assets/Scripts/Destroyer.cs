@@ -11,11 +11,9 @@ public class Destroyer : MonoBehaviour
     {
         if (Enum.IsDefined(typeof(DESTROYER_GAMEOBJECT), collision.gameObject.tag))
         {
-            if (collision.gameObject.tag == DESTROYER_GAMEOBJECT.Ball.ToString())
-            {
-                Debug.Log("Game Over!!!!!");
-                onGameOverLevel?.Invoke();
-            }
+            Debug.Log("Game Over!!!!!");
+            onGameOverLevel?.Invoke();
+
             Destroy(collision.gameObject);
         }
     }

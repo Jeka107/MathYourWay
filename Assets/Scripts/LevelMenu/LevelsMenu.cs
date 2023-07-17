@@ -13,7 +13,9 @@ public class LevelsMenu : MonoBehaviour
         PlaceNumberOnLevels();
         saveDataManager = FindAnyObjectByType<SaveDataManager>();
 
-        playerSavedData = saveDataManager.LoadData();
+        if(saveDataManager!=null)
+            playerSavedData = saveDataManager.LoadData();
+
         if(playerSavedData!=null)
             CheckLevelsStatus();
     }

@@ -19,7 +19,6 @@ public class LaserObstacle : MonoBehaviour
     {
         while(true)
         {
-            Debug.Log("AAA");
             if(currentState)
             {
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
