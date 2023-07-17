@@ -1977,6 +1977,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2395662893204446983, guid: 173061bfa5cf7a94a9ed15b2ead4a9db, type: 3}
+      propertyPath: waitSeconds
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2581985892647849533, guid: 173061bfa5cf7a94a9ed15b2ead4a9db, type: 3}
       propertyPath: m_RootOrder
       value: 5

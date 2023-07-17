@@ -27,7 +27,7 @@ public class RopeCutter : MonoBehaviour
     private float startTime;
     private float performedTime;
     private float endTime;
-    private bool soundOn = false;
+    private bool soundIsOn = false;
 
     private void Awake()
     {
@@ -86,11 +86,13 @@ public class RopeCutter : MonoBehaviour
             performedTime = (float)ctx.time;
 
             
-            if (currentCutTrail && soundOn)
+            if (currentCutTrail&&soundIsOn)
             {
                 if(settings.GetSoundEffectStatus())
+                {
                     onSlash?.Invoke();
-                soundOn = false;
+                    soundIsOn = false;
+                }
             }
         }
     }
@@ -98,7 +100,7 @@ public class RopeCutter : MonoBehaviour
     {
         if (cutAvailable)
         {
-            soundOn = true;
+            soundIsOn = true;
             startTime = (float)ctx.startTime;
             StartCoroutine(CreateCutTrail());
         }
@@ -120,7 +122,7 @@ public class RopeCutter : MonoBehaviour
                 onCut?.Invoke();
                 ropeCut = false;
             }
-            soundOn = true;
+            soundIsOn = true;
         }
     }
     private void DestroyCutTrail()

@@ -21,23 +21,25 @@ public class AudioController : MonoBehaviour
     }
     private void Start()
     {
+        //Click Button
         MainMenuCanvas.onClick += ClickButton;
         Level_Menu_Canvas.onClick += ClickButton;
         Settings.onClick += ClickButton;
         LevelCanvas.onClick += ClickButton;
-
         GameManager.onClick += ClickButton;
+
         Ball.onBallMerged += BallMerged;
         RopeCutter.onSlash += Slash;
     }
     private void OnDestroy()
     {
+        //Click Button
         MainMenuCanvas.onClick -= ClickButton;
         Level_Menu_Canvas.onClick -= ClickButton;
         Settings.onClick -= ClickButton;
         LevelCanvas.onClick -= ClickButton;
-
         GameManager.onClick -= ClickButton;
+
         Ball.onBallMerged -= BallMerged;
         RopeCutter.onSlash -= Slash;
     }
@@ -56,6 +58,15 @@ public class AudioController : MonoBehaviour
     {
         audioSource.priority = 128;
         audioSource.volume = 1f;
-        audioSource.PlayOneShot(slash);
+
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(slash);
+        }
+        else
+        {
+            audioSource.Stop();
+            audioSource.PlayOneShot(slash);
+        }
     }
 }
