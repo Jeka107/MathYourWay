@@ -12,6 +12,8 @@ public class RopeCutter : MonoBehaviour
     public static event OnSlash onSlash;
 
     [SerializeField] private GameObject cutTrailPrefab;
+    [SerializeField] private EdgeCollider2D myCollider;
+
     [SerializeField] private float maxTime;
     [SerializeField] private float minTimeSlashStart;
 
@@ -29,6 +31,7 @@ public class RopeCutter : MonoBehaviour
     private float endTime;
     private bool soundIsOn = false;
 
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -39,6 +42,7 @@ public class RopeCutter : MonoBehaviour
         InputManager.playerInput.Player.TouchPosition.performed += UpdateCut;
         InputManager.playerInput.Player.Touch.canceled += StopCutting;
 
+        TrailCollision.onPieceCut += PieceCut;
         LevelCanvas.onPause += CutAvailable;
     }
 
@@ -48,23 +52,41 @@ public class RopeCutter : MonoBehaviour
         InputManager.playerInput.Player.TouchPosition.performed -= UpdateCut;
         InputManager.playerInput.Player.Touch.canceled -= StopCutting;
 
+        TrailCollision.onPieceCut -= PieceCut;
         LevelCanvas.onPause -= CutAvailable;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
         if (currentCutTrail)
         {
-            if (collision.gameObject.tag == "Piece")
-            {
-                Transform hook = collision.transform.parent;
+            SetColliderPointsFromTrail(currentCutTrail.GetComponent<TrailRenderer>(), myCollider);
+        }
+    }
+    void SetColliderPointsFromTrail(TrailRenderer trail, EdgeCollider2D collider)
+    {
+        List<Vector2> points = new List<Vector2>();
 
-                foreach (Transform piece in hook)
-                {
-                    if (piece.tag == "Piece")
-                        Destroy(piece.gameObject);
-                }
-                ropeCut = true;
+        for (int pos = 0; pos < trail.positionCount; pos++)
+        {
+            points.Add(trail.GetPosition(pos));
+        }
+        collider.SetPoints(points);
+    }
+
+    private void PieceCut(GameObject collision)
+    {
+        if (currentCutTrail)
+        {
+            Transform hook = collision.transform.parent;
+
+            Destroy(collision.gameObject);
+
+            foreach (Transform piece in hook)
+            {
+                if (piece.tag == "Piece")
+                    Destroy(piece.gameObject);
             }
+            ropeCut = true;
         }
     }
     private void UpdateCut(InputAction.CallbackContext ctx)
@@ -81,19 +103,17 @@ public class RopeCutter : MonoBehaviour
 
             rb.position = Camera.main.ScreenToWorldPoint(touchPosition);
 
-            //hit2 = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(touchPosition), Vector2.zero);
-
             performedTime = (float)ctx.time;
 
-            
-            if (currentCutTrail&&soundIsOn)
+            if (currentCutTrail && soundIsOn)
             {
-                if(settings.GetSoundEffectStatus())
+                if (settings.GetSoundEffectStatus())
                 {
                     onSlash?.Invoke();
                     soundIsOn = false;
                 }
             }
+            
         }
     }
     private void StartCutting(InputAction.CallbackContext ctx)

@@ -915,7 +915,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &321334744
 GameObject:
@@ -5128,7 +5128,7 @@ Transform:
   - {fileID: 115020304}
   - {fileID: 1074269828}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1225713038
 GameObject:
@@ -5602,6 +5602,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1ba60de564a314ab2504ea58f5eaf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!68 &1319331271 stripped
+EdgeCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8411928557243145243, guid: 4caad76d601568440a37f55d4a557e36, type: 3}
+  m_PrefabInstance: {fileID: 1423988718}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1358186640
 GameObject:
   m_ObjectHideFlags: 0
@@ -5657,6 +5662,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e31c45bcd0af7a744a64c6d0b0b07b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1423988718
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 214512412852142248, guid: 4caad76d601568440a37f55d4a557e36, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 214512412852142248, guid: 4caad76d601568440a37f55d4a557e36, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 214512412852142248, guid: 4caad76d601568440a37f55d4a557e36, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 214512412852142248, guid: 4caad76d601568440a37f55d4a557e36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 214512412852142248, guid: 4caad76d601568440a37f55d4a557e36, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 214512412852142248, guid: 4caad76d601568440a37f55d4a557e36, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 214512412852142248, guid: 4caad76d601568440a37f55d4a557e36, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 214512412852142248, guid: 4caad76d601568440a37f55d4a557e36, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 214512412852142248, guid: 4caad76d601568440a37f55d4a557e36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 214512412852142248, guid: 4caad76d601568440a37f55d4a557e36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 214512412852142248, guid: 4caad76d601568440a37f55d4a557e36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550487113072313543, guid: 4caad76d601568440a37f55d4a557e36, type: 3}
+      propertyPath: m_Name
+      value: TrailCollider
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4caad76d601568440a37f55d4a557e36, type: 3}
 --- !u!1 &1431002585
 GameObject:
   m_ObjectHideFlags: 0
@@ -6658,7 +6724,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1880085083 stripped
 RectTransform:
@@ -6697,6 +6763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutTrailPrefab: {fileID: 921926477854685624, guid: e5122055ad4680144989c12fd9328883, type: 3}
+  myCollider: {fileID: 1319331271}
   maxTime: 0.3
   minTimeSlashStart: 0.0001
   settings: {fileID: 2077358544}

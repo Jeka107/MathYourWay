@@ -32,7 +32,7 @@ public class Hook : MonoBehaviour
             currentPieceOfRope = Instantiate(pieceOfRope, transform);
             joint2D = currentPieceOfRope.GetComponent<HingeJoint2D>();
             joint2D.connectedBody = currentRb;
-            joint2D.connectedAnchor = anchor;
+            //joint2D.connectedAnchor = anchor;
             currentRb = currentPieceOfRope.GetComponent<Rigidbody2D>();
         }
         lastPieceOfRope = currentPieceOfRope;

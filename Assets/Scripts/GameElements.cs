@@ -19,9 +19,8 @@ public class GameElements : MonoBehaviour
     private void CreateElements()
     {
         HingeJoint2D hingeJoint2D;
-        
 
-       foreach(Element element in elements)
+       foreach (Element element in elements)
        {
             lastPieceOfRope = element.hooks[0].lastPieceOfRope;
             CreateBall(element);
@@ -43,9 +42,14 @@ public class GameElements : MonoBehaviour
     private void CreateBall(Element element)
     {
         Ball thisBall;
+        DistanceJoint2D distanceJoint2D;
 
         currentBall = Instantiate(element.ballInfo.ball,lastPieceOfRope.transform);
         thisBall = currentBall.GetComponent<Ball>();
+
+        //distanceJoint2D = currentHook.GetComponent<DistanceJoint2D>();
+        //distanceJoint2D.distance = 2;
+        //distanceJoint2D.connectedBody = currentBall.GetComponent<Rigidbody2D>();
 
         thisBall.UpdateBallInfo(element.ballInfo.ball.GetComponent<SpriteRenderer>().color, element.ballInfo.value);
     }
