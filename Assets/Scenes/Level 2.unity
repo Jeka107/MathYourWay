@@ -6022,11 +6022,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5020630909872443891, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: anchor.y
-      value: -0.15
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5020630909872443891, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: ropeLenght
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8371141046238900656, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: m_Name
@@ -7344,11 +7344,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5020630909872443891, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: anchor.y
-      value: -0.15
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5020630909872443891, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: ropeLenght
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8371141046238900656, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: m_Name

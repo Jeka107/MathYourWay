@@ -3,9 +3,10 @@ using UnityEngine;
 public class Hook : MonoBehaviour
 {
     [SerializeField] private GameObject pieceOfRope;
-    [SerializeField] private Vector2 firstPieceScale;
-    [SerializeField] private int ropeLenght;
+    [SerializeField] private Vector2 firstPieceAnchor;
     [SerializeField] private Vector2 anchor;
+    [SerializeField] public int ropeLenght;
+    
    
     [HideInInspector] public GameObject lastPieceOfRope;
     private Rigidbody2D rb;
@@ -23,8 +24,9 @@ public class Hook : MonoBehaviour
 
         //First piece on the hook and connect to the hook.
         currentPieceOfRope = Instantiate(pieceOfRope, transform);
-        //currentPieceOfRope.transform.localScale = firstPieceScale;
-        currentPieceOfRope.GetComponent<HingeJoint2D>().connectedBody = rb;
+        joint2D = currentPieceOfRope.GetComponent<HingeJoint2D>();
+        joint2D.connectedBody = rb;
+        joint2D.connectedAnchor = firstPieceAnchor;
         currentRb = currentPieceOfRope.GetComponent<Rigidbody2D>();
 
         for (int i = 1; i < ropeLenght; i++)
@@ -32,7 +34,7 @@ public class Hook : MonoBehaviour
             currentPieceOfRope = Instantiate(pieceOfRope, transform);
             joint2D = currentPieceOfRope.GetComponent<HingeJoint2D>();
             joint2D.connectedBody = currentRb;
-            //joint2D.connectedAnchor = anchor;
+            joint2D.connectedAnchor = anchor;
             currentRb = currentPieceOfRope.GetComponent<Rigidbody2D>();
         }
         lastPieceOfRope = currentPieceOfRope;

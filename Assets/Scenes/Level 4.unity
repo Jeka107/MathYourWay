@@ -6022,7 +6022,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5020630909872443891, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: anchor.y
-      value: -0.15
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5020630909872443891, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: ropeLenght
@@ -7344,7 +7344,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5020630909872443891, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: anchor.y
-      value: -0.15
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5020630909872443891, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: ropeLenght

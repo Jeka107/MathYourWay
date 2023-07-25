@@ -803,14 +803,10 @@ MonoBehaviour:
   elements:
   - hooks:
     - {fileID: 461536312}
+    - {fileID: 1639100772}
     ballInfo:
       ball: {fileID: 7534712864330659733, guid: f7503b4f57f574149bca5650da86e452, type: 3}
       value: 9
-  - hooks:
-    - {fileID: 1639100772}
-    ballInfo:
-      ball: {fileID: 7534712864330659733, guid: 9cc545ef71a508d49acf355954570189, type: 3}
-      value: 8
 --- !u!4 &231341415
 Transform:
   m_ObjectHideFlags: 0
@@ -6020,17 +6016,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1215305759}
     m_Modifications:
-    - target: {fileID: 4369669091884841448, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
-      propertyPath: m_Distance
-      value: 3.1622777
-      objectReference: {fileID: 0}
     - target: {fileID: 5020630909872443891, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: anchor.y
-      value: -0.2
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5020630909872443891, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: ropeLenght
-      value: 10
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020630909872443891, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
+      propertyPath: firstPieceAnchor.y
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8371141046238900656, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: m_Name
@@ -6080,7 +6076,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6993,7 +6990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2833988384629432002, guid: b9d84d725cdbd0746808e7f175e9e7ff, type: 3}
       propertyPath: result
-      value: 72
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2833988384629432006, guid: b9d84d725cdbd0746808e7f175e9e7ff, type: 3}
       propertyPath: m_Name
@@ -7346,17 +7343,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1215305759}
     m_Modifications:
-    - target: {fileID: 4369669091884841448, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
-      propertyPath: m_Distance
-      value: 3.1622777
-      objectReference: {fileID: 0}
     - target: {fileID: 5020630909872443891, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: anchor.y
-      value: -0.2
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5020630909872443891, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: ropeLenght
-      value: 10
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020630909872443891, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
+      propertyPath: firstPieceAnchor.y
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8371141046238900656, guid: fb07c58f71c5d3d48b1571b6caea6d33, type: 3}
       propertyPath: m_Name
@@ -7406,7 +7403,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

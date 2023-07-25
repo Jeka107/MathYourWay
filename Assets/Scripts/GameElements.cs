@@ -12,7 +12,7 @@ public class GameElements : MonoBehaviour
 
     private void Start()
     {
-        anchor = new Vector2(0, -0.3f);
+        anchor = new Vector2(0, -0.2f);
         CreateElements();
     }
 
@@ -20,7 +20,7 @@ public class GameElements : MonoBehaviour
     {
         HingeJoint2D hingeJoint2D;
 
-       foreach (Element element in elements)
+        foreach (Element element in elements)
        {
             lastPieceOfRope = element.hooks[0].lastPieceOfRope;
             CreateBall(element);
@@ -33,24 +33,19 @@ public class GameElements : MonoBehaviour
                     hingeJoint2D = currentBall.AddComponent<HingeJoint2D>();
                     hingeJoint2D.connectedBody = hook.lastPieceOfRope.GetComponent<Rigidbody2D>();
                     hingeJoint2D.autoConfigureConnectedAnchor = false;
+                    hingeJoint2D.anchor = new Vector2(0, 0.2f);
                     hingeJoint2D.connectedAnchor = anchor;
                 }
             }
             currentBall.transform.SetParent(currentHook.transform);
-       }
+        }
     }
     private void CreateBall(Element element)
     {
         Ball thisBall;
-        DistanceJoint2D distanceJoint2D;
-
+        
         currentBall = Instantiate(element.ballInfo.ball,lastPieceOfRope.transform);
         thisBall = currentBall.GetComponent<Ball>();
-
-        //distanceJoint2D = currentHook.GetComponent<DistanceJoint2D>();
-        //distanceJoint2D.distance = 2;
-        //distanceJoint2D.connectedBody = currentBall.GetComponent<Rigidbody2D>();
-
         thisBall.UpdateBallInfo(element.ballInfo.ball.GetComponent<SpriteRenderer>().color, element.ballInfo.value);
     }
 
