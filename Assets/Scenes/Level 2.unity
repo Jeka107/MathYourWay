@@ -3043,7 +3043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6088826183080950437, guid: 6478319cb81c75a44a2156fee7874681, type: 3}
       propertyPath: number
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6088826183080950437, guid: 6478319cb81c75a44a2156fee7874681, type: 3}
       propertyPath: settings
@@ -4758,18 +4758,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2077358544}
-    - target: {fileID: 700937926457894492, guid: 33779cceb0debb447be8559556d3842b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SoundEffectButton
-      objectReference: {fileID: 0}
     - target: {fileID: 1631760290554914536, guid: 33779cceb0debb447be8559556d3842b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2077358544}
-    - target: {fileID: 1631760290554914536, guid: 33779cceb0debb447be8559556d3842b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SoundEffectButton
-      objectReference: {fileID: 0}
     - target: {fileID: 1729797168850453414, guid: 33779cceb0debb447be8559556d3842b, type: 3}
       propertyPath: m_Name
       value: Settings_Label
@@ -4778,14 +4770,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2077358544}
-    - target: {fileID: 3960959828293045629, guid: 33779cceb0debb447be8559556d3842b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SettingsLabelOff
-      objectReference: {fileID: 0}
-    - target: {fileID: 3960959828293045629, guid: 33779cceb0debb447be8559556d3842b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Settings, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 7340750329917381758, guid: 33779cceb0debb447be8559556d3842b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4870,6 +4854,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8286775848797561662, guid: 33779cceb0debb447be8559556d3842b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2077358544}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

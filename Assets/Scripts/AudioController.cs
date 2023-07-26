@@ -27,6 +27,7 @@ public class AudioController : MonoBehaviour
         Settings.onClick += ClickButton;
         LevelCanvas.onClick += ClickButton;
         GameManager.onClick += ClickButton;
+        FirstLevelCanvas.onClick += ClickButton;
 
         Ball.onBallMerged += BallMerged;
         RopeCutter.onSlash += Slash;
@@ -39,6 +40,7 @@ public class AudioController : MonoBehaviour
         Settings.onClick -= ClickButton;
         LevelCanvas.onClick -= ClickButton;
         GameManager.onClick -= ClickButton;
+        FirstLevelCanvas.onClick -= ClickButton;
 
         Ball.onBallMerged -= BallMerged;
         RopeCutter.onSlash -= Slash;

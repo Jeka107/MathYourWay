@@ -6147,6 +6147,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Settings_Label
       objectReference: {fileID: 0}
+    - target: {fileID: 1729797168850453414, guid: 33779cceb0debb447be8559556d3842b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3960959828293045629, guid: 33779cceb0debb447be8559556d3842b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -6246,7 +6250,11 @@ PrefabInstance:
     - target: {fileID: 8286775848797561662, guid: 33779cceb0debb447be8559556d3842b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1222032798}
+      objectReference: {fileID: 1735022102}
+    - target: {fileID: 8286775848797561662, guid: 33779cceb0debb447be8559556d3842b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SettingsLabelOff
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

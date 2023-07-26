@@ -7,6 +7,9 @@ public class Settings : MonoBehaviour
     public delegate void OnClick();
     public static event OnClick onClick;
 
+    public delegate void OnPause(bool cutAvailable);
+    public static event OnPause onPause;
+
     [SerializeField] private GameObject settingsLabel;
     [SerializeField] private GameObject blurImage;
 
@@ -22,7 +25,7 @@ public class Settings : MonoBehaviour
     {
         settingsLabel.SetActive(false);
 
-        saveDataManager = FindAnyObjectByType<SaveDataManager>();
+        saveDataManager = FindObjectOfType<SaveDataManager>();
         if(saveDataManager!=null)
             soundEffectStatus = saveDataManager.LoadSettingsData();
         SoundEffectStatus();
@@ -34,6 +37,9 @@ public class Settings : MonoBehaviour
 
         settingsLabel.SetActive(true);
         blurImage.SetActive(true);
+
+        Time.timeScale = 0;
+        onPause?.Invoke(false);
     }
     public void SettingsLabelOff()
     {
@@ -42,6 +48,9 @@ public class Settings : MonoBehaviour
 
         settingsLabel.SetActive(false);
         blurImage.SetActive(false);
+
+        Time.timeScale = 1;
+        onPause?.Invoke(true);
     }
 
     private void SoundEffectStatus()

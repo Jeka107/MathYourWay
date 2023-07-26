@@ -750,6 +750,11 @@ MonoBehaviour:
   blurImage: {fileID: 851509127}
   soundEffectOn: {fileID: 1997360532}
   soundEffectOff: {fileID: 1809051649}
+--- !u!1 &611640258 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7808411478751612809, guid: 95e75e367ba0611419408e52b787ab06, type: 3}
+  m_PrefabInstance: {fileID: 1701936065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &686182106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1280,18 +1285,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 609746521}
-    - target: {fileID: 700937926457894492, guid: 33779cceb0debb447be8559556d3842b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SoundEffectButton
-      objectReference: {fileID: 0}
     - target: {fileID: 1631760290554914536, guid: 33779cceb0debb447be8559556d3842b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 609746521}
-    - target: {fileID: 1631760290554914536, guid: 33779cceb0debb447be8559556d3842b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SoundEffectButton
-      objectReference: {fileID: 0}
     - target: {fileID: 1729797168850453414, guid: 33779cceb0debb447be8559556d3842b, type: 3}
       propertyPath: m_Name
       value: Settings_Label
@@ -1303,15 +1300,7 @@ PrefabInstance:
     - target: {fileID: 3960959828293045629, guid: 33779cceb0debb447be8559556d3842b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 609746521}
-    - target: {fileID: 3960959828293045629, guid: 33779cceb0debb447be8559556d3842b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SettingsLabelOff
-      objectReference: {fileID: 0}
-    - target: {fileID: 3960959828293045629, guid: 33779cceb0debb447be8559556d3842b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Settings, Assembly-CSharp
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 611640258}
     - target: {fileID: 7340750329917381758, guid: 33779cceb0debb447be8559556d3842b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1396,8 +1385,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6246714227673882812, guid: 33779cceb0debb447be8559556d3842b, type: 3}
+    - target: {fileID: 8286775848797561662, guid: 33779cceb0debb447be8559556d3842b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 609746521}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

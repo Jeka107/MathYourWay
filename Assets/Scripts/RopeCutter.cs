@@ -44,6 +44,8 @@ public class RopeCutter : MonoBehaviour
 
         TrailCollision.onPieceCut += PieceCut;
         LevelCanvas.onPause += CutAvailable;
+        FirstLevelCanvas.onPause += CutAvailable;
+        Settings.onPause += CutAvailable;
     }
 
     private void OnDestroy()
@@ -54,6 +56,8 @@ public class RopeCutter : MonoBehaviour
 
         TrailCollision.onPieceCut -= PieceCut;
         LevelCanvas.onPause -= CutAvailable;
+        FirstLevelCanvas.onPause -= CutAvailable;
+        Settings.onPause -= CutAvailable;
     }
     private void Update()
     {
@@ -105,7 +109,7 @@ public class RopeCutter : MonoBehaviour
 
             performedTime = (float)ctx.time;
 
-            if (currentCutTrail && soundIsOn)
+            if (currentCutTrail&&soundIsOn)
             {
                 if (settings.GetSoundEffectStatus())
                 {
@@ -113,7 +117,6 @@ public class RopeCutter : MonoBehaviour
                     soundIsOn = false;
                 }
             }
-            
         }
     }
     private void StartCutting(InputAction.CallbackContext ctx)
@@ -142,7 +145,7 @@ public class RopeCutter : MonoBehaviour
                 onCut?.Invoke();
                 ropeCut = false;
             }
-            soundIsOn = true;
+            soundIsOn = false;
         }
     }
     private void DestroyCutTrail()
