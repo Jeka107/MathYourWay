@@ -46,23 +46,18 @@ public class LevelCanvas : MonoBehaviour
         oneStar.SetActive(false);
         twoStar.SetActive(false);
         threeStar.SetActive(false);
-
-        //animation
-        //pause_Load.SetBool("Load", true);
     }
     private void Start()
     {
         //GameOver
         Result.onGameOverLevel += GameOverLabelOn;
         Destroyer.onGameOverLevel += GameOverLabelOn;
-        LaserObstacle.onGameOverLevel += GameOverLabelOn;
     }
     private void OnDestroy()
     {
         //GameOver
         Result.onGameOverLevel -= GameOverLabelOn;
         Destroyer.onGameOverLevel -= GameOverLabelOn;
-        LaserObstacle.onGameOverLevel += GameOverLabelOn;
     }
     public void SoundEffectClick()
     {

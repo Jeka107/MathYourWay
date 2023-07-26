@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class LaserObstacle : MonoBehaviour
 {
-    public delegate void OnGameOverLevel();
-    public static event OnGameOverLevel onGameOverLevel;
-
     [SerializeField] private float activeTime;
 
     private bool currentState = false;
@@ -32,14 +29,6 @@ public class LaserObstacle : MonoBehaviour
                 currentState = true;
             }
             yield return new WaitForSeconds(activeTime);
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    { 
-        if(collision.tag=="Ball")
-        {
-            Destroy(collision.gameObject);
-            onGameOverLevel?.Invoke();
         }
     }
 }

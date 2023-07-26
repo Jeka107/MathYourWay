@@ -67,18 +67,21 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "ColoredBall")
+        if (transform.tag != "ColoredBall")
         {
-            PlaySoundEffect();
+            if (collision.transform.tag == "ColoredBall")
+            {
+                PlaySoundEffect();
 
-            var otherBall = collision.gameObject.GetComponent<Ball>();
-            var newValue = arithmetic.ArithmeticAction(otherBall.arithmeticAction, value, otherBall.value);
+                var otherBall = collision.gameObject.GetComponent<Ball>();
+                var newValue = arithmetic.ArithmeticAction(otherBall.arithmeticAction, value, otherBall.value);
 
-            collision.gameObject.GetComponent<Ball>().UpdateBall(ballColor, newValue);
-            Destroy(gameObject);
+                collision.gameObject.GetComponent<Ball>().UpdateBall(ballColor, newValue);
+                Destroy(gameObject);
+            }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag == "ColoredBall")
         {
@@ -90,7 +93,7 @@ public class Ball : MonoBehaviour
             collision.gameObject.GetComponent<Ball>().UpdateBall(ballColor, newValue);
             Destroy(gameObject);
         }
-    }
+    }*/
     private void UpdateLayerTag()
     {
         if (arithmeticAction != "Def")

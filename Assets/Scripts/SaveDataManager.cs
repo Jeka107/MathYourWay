@@ -160,7 +160,7 @@ public class SaveDataManager : MonoBehaviour
         PlayerSavedSettings dataToSave = new PlayerSavedSettings(soundEffectStatus);
             
         string filePath = Application.persistentDataPath + "/" + saveFolderName + "/" + saveFileNameSettings;
-
+        //Debug.Log(filePath);
         if (!System.IO.File.Exists(filePath))
         {
             Directory.CreateDirectory(Path.GetDirectoryName(filePath));
