@@ -4,12 +4,13 @@ public class Hook : MonoBehaviour
 {
     [SerializeField] private GameObject pieceOfRope;
     [SerializeField] private Vector2 firstPieceAnchor;
-    [SerializeField] private Vector2 anchor;
+    [SerializeField] public Vector2 anchor;
     [SerializeField] public int ropeLenght;
     
    
     [HideInInspector] public GameObject lastPieceOfRope;
     private Rigidbody2D rb;
+    private GameObject ball;
 
     private void Awake()
     {

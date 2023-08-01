@@ -13,12 +13,14 @@ public class Ball : MonoBehaviour
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] public string arithmeticAction;
 
-
+    private List<Rigidbody2D> rbLastPieces;
     private Settings settings;
     private Arithmetic arithmetic;
     private float y;
+
     private void Awake()
     {
+        rbLastPieces = new List<Rigidbody2D>();
         settings = FindAnyObjectByType<Settings>();
     }
     private void Start()
@@ -51,7 +53,7 @@ public class Ball : MonoBehaviour
         Invoke("UpdateLayerTag", 1f);//after creation update layer and tags.
     }
 
-    public void UpdateBall(Color _ballColor, int newValue)
+    public void UpdateBall(Color _ballColor, int newValue, List<Rigidbody2D> rbLastPieces)
     {
         ballColor = _ballColor;
         gameObject.GetComponent<SpriteRenderer>().color = ballColor;
@@ -62,7 +64,26 @@ public class Ball : MonoBehaviour
 
         gameObject.layer = LayerMask.NameToLayer("Ball");
         gameObject.tag = "Ball";
-        gameObject.GetComponent<Rigidbody2D>().constraints= RigidbodyConstraints2D.FreezeRotation;
+        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        if (rbLastPieces.Count != 0)
+        {
+            UpdateNumHingeJoint(rbLastPieces);
+        }
+    }
+
+    //Connect to the remaining ropes
+    private void UpdateNumHingeJoint(List<Rigidbody2D> rbLastPieces)
+    {      
+        HingeJoint2D hingeJoint2D;
+
+        for (int i = 0; i < rbLastPieces.Count; i++)
+        {
+            hingeJoint2D = gameObject.AddComponent<HingeJoint2D>();
+            hingeJoint2D.connectedBody = rbLastPieces[i];
+            hingeJoint2D.autoConfigureConnectedAnchor = false;
+            hingeJoint2D.connectedAnchor = gameObject.GetComponentInParent<Hook>().anchor;
+        }      
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -76,24 +97,21 @@ public class Ball : MonoBehaviour
                 var otherBall = collision.gameObject.GetComponent<Ball>();
                 var newValue = arithmetic.ArithmeticAction(otherBall.arithmeticAction, value, otherBall.value);
 
-                collision.gameObject.GetComponent<Ball>().UpdateBall(ballColor, newValue);
+                //Check if connected to ropes.
+                foreach(HingeJoint2D joint in gameObject.GetComponents<HingeJoint2D>())
+                {
+                    
+                    if (joint!=null)
+                    {  
+                        rbLastPieces.Add(joint.connectedBody);
+                    }
+                }
+
+                collision.gameObject.GetComponent<Ball>().UpdateBall(ballColor, newValue, rbLastPieces);
                 Destroy(gameObject);
             }
         }
     }
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.transform.tag == "ColoredBall")
-        {
-            PlaySoundEffect();
-
-            var otherBall = collision.gameObject.GetComponent<Ball>();
-            var newValue = arithmetic.ArithmeticAction(otherBall.arithmeticAction, value, otherBall.value);
-
-            collision.gameObject.GetComponent<Ball>().UpdateBall(ballColor, newValue);
-            Destroy(gameObject);
-        }
-    }*/
     private void UpdateLayerTag()
     {
         if (arithmeticAction != "Def")
