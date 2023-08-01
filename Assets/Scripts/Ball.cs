@@ -64,8 +64,9 @@ public class Ball : MonoBehaviour
 
         gameObject.layer = LayerMask.NameToLayer("Ball");
         gameObject.tag = "Ball";
+        gameObject.GetComponent<Transform>().eulerAngles = Vector3.zero;
         gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-
+        
         if (rbLastPieces.Count != 0)
         {
             UpdateNumHingeJoint(rbLastPieces);
