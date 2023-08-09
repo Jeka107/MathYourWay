@@ -273,7 +273,7 @@ Transform:
   m_Children:
   - {fileID: 7534712863963248494}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7534712864330659734
 SpriteRenderer:
@@ -343,7 +343,7 @@ Rigidbody2D:
   m_LinearDrag: 0.1
   m_AngularDrag: 0.1
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c887c6fc5789bea47acd9ee5115e55b8, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
