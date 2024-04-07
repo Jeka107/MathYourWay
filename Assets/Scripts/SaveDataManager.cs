@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -37,6 +36,7 @@ public class SaveDataManager : MonoBehaviour
 {
     private static List<PlayerSavedData> levels= new List<PlayerSavedData>();
     private bool soundEffectStatus;
+    public static SaveDataManager Instance;
 
     private string saveFolderName = "Saved_Data_JSON";
     private string saveFileName = "save_json1.sav";
@@ -48,6 +48,7 @@ public class SaveDataManager : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         soundEffectStatus = LoadSettingsData();
 
         if (!created)
@@ -118,7 +119,6 @@ public class SaveDataManager : MonoBehaviour
     public List<PlayerSavedData> LoadData()
     {
         string filePath = Application.persistentDataPath + "/" + saveFolderName + "/" + saveFileName;
-
         string dataToLoad = "";
 
         if (System.IO.File.Exists(filePath))

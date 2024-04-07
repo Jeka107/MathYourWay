@@ -11,7 +11,7 @@ public class Result : MonoBehaviour
     public delegate void OnGameOverLevel();
     public static event OnGameOverLevel onGameOverLevel;
 
-    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private TextMeshPro text;
     [SerializeField] private int result;
 
     private void Awake()

@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Game Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 256
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: acafaa5f32b20ec4b99a9b781f31e269, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 7f671fd1caea10a459c87676725dcedf: 21300000
+    - b0bd0392011a02f48a8035d2d8d6bb20: 21300000
+    - 41d200e23340d804abecfb70598fcfe6: 21300000
+    - bff9e4e2d6f131944a18a80794041293: 21300000
+    - e8b25f1339267434a94e324e3e44887f: 21300000
+    - d97199d5ed130394882ecd35bf76459c: 21300000
+    - a2c639b611f4b424e81ca64d3cfdc028: 21300000
+    - 3284f4d9714d74943847ca712c1f65fa: 21300000
+    - 3f66375ae98ab454692426512d2327ff: 21300000
+    - 76bdeb4bbd562dc4cac8dec98176c0a5: 21300000
+    - 72d9f53cd550b8f4890aff01050ed99e: 21300000
+    - 8f01b88ff3c710b47ae9a7cd4af84b96: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 7f671fd1caea10a459c87676725dcedf, type: 3}
+  - {fileID: 21300000, guid: b0bd0392011a02f48a8035d2d8d6bb20, type: 3}
+  - {fileID: 21300000, guid: 41d200e23340d804abecfb70598fcfe6, type: 3}
+  - {fileID: 21300000, guid: bff9e4e2d6f131944a18a80794041293, type: 3}
+  - {fileID: 21300000, guid: e8b25f1339267434a94e324e3e44887f, type: 3}
+  - {fileID: 21300000, guid: d97199d5ed130394882ecd35bf76459c, type: 3}
+  - {fileID: 21300000, guid: a2c639b611f4b424e81ca64d3cfdc028, type: 3}
+  - {fileID: 21300000, guid: 3284f4d9714d74943847ca712c1f65fa, type: 3}
+  - {fileID: 21300000, guid: 3f66375ae98ab454692426512d2327ff, type: 3}
+  - {fileID: 21300000, guid: 76bdeb4bbd562dc4cac8dec98176c0a5, type: 3}
+  - {fileID: 21300000, guid: 72d9f53cd550b8f4890aff01050ed99e, type: 3}
+  - {fileID: 21300000, guid: 8f01b88ff3c710b47ae9a7cd4af84b96, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Block_Square
+  - Block_Corner
+  - laser
+  - Piece
+  - Block_Big
+  - laser_shooter
+  - Block_Corner_Big
+  - Hook
+  - Hole_Result
+  - Grey_Ball
+  - Result
+  - Block_Narrow
+  m_RenderDataMap: {}
+  m_Tag: Game Atlas
+  m_IsVariant: 0

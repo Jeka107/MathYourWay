@@ -41,7 +41,6 @@ public class FirstLevelCanvas : MonoBehaviour
 
         if (soundEffectStatus)
         {
-            Debug.Log(1);
             onClick?.Invoke();
         }
         animator.SetBool("CloseInformation", true);

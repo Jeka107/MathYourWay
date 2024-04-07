@@ -10,7 +10,7 @@ public class Ball : MonoBehaviour
 
     [SerializeField] private Color ballColor;
     [SerializeField] public int value;
-    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private TextMeshPro text;
     [SerializeField] public string arithmeticAction;
 
     private List<Rigidbody2D> rbLastPieces;
